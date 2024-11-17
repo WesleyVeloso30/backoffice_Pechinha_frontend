@@ -1,0 +1,7 @@
+.campo-obrigatorio {
+    border: 1px solid red;
+}
+
+.campo-preenchido {
+    border: 1px solid green;
+}

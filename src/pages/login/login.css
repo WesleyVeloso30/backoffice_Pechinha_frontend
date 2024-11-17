@@ -1,3 +1,9 @@
 .loginContainer{
-    flex: 1
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.image {
+    max-width: 65%;
 }
