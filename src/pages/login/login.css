@@ -7,3 +7,17 @@
 .image {
     max-width: 65%;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    min-height: 230px;
+}
+
+aside {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
