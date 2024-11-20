@@ -1,8 +1,13 @@
-import { FieldValues, useForm } from 'react-hook-form';
+import { FieldError, FieldErrorsImpl, FieldValues, Merge, useForm } from 'react-hook-form';
 import { useState } from "react"
 import './style.css'
 
-const HookForm = (props) => {
+const HookForm = ({ inputs }: {
+    inputs: {
+        type: string;
+        label: string;
+    }[];
+}) => {
     const [email, setEmail] = useState('');
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
@@ -23,19 +28,25 @@ const HookForm = (props) => {
         <>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
             <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    className={`${errors.email ? "campo-obrigatorio" : "campo-preenchido"}`}
-                    {
-                        ...register('email', {
-                            required: 'Campo Obrigatório',
-
-                        })
-                    }
-                />
-                { errors.email && <p>{ errors.email.message as string }</p>}
+                {inputs.map((input) => {
+                    return (
+                        <>
+                        <label htmlFor={`${input.label}`}>{input.label}:</label>
+                        <input
+                            type="text"
+                            id="[input.label]"
+                            className={`${errors.[input.label] as FieldError ? "campo-obrigatorio" : "campo-preenchido"}`}
+                            {
+                                ...register('[input.label]', {
+                                    required: 'Campo Obrigatório',
+        
+                                })
+                            }
+                        />
+                        { errors.[input.label] && <p>{ errors.[input.label].message as string }</p>}
+                        </>
+                    )
+                })}
             </div>
             <input type="submit"/>
         </form>
