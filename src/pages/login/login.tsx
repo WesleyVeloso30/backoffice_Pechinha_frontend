@@ -12,7 +12,16 @@ export const Login = () => {
                 <img className="image" src={imgUrl} alt="" />
                 <aside>
                     {/* <ManualForm /> */}
-                    <HookForm />
+                    <HookForm inputs={[
+                        {
+                            label: 'email',
+                            type: 'text',
+                        },
+                        {
+                            label: 'password',
+                            type: 'text',
+                        },
+                    ]} />
                     <AccessButton buttonName="Entrar" />
 
                 </aside>

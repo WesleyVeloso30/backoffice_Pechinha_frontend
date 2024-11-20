@@ -1,6 +1,7 @@
-import { FieldError, FieldErrorsImpl, FieldValues, Merge, useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { useState } from "react"
 import './style.css'
+import { firstLetterCapitalized } from '../../shared/utils';
 
 const HookForm = ({ inputs }: {
     inputs: {
@@ -25,32 +26,30 @@ const HookForm = ({ inputs }: {
     // const emailWatch = watch('email');
     // console.log(emailWatch); Fica assistindo cada alteração do input
     return (
-        <>
         <form onSubmit={handleSubmit(handleSubmitForm)}>
             <div>
-                {inputs.map((input) => {
+                {inputs.map((input, index) => {
                     return (
-                        <>
-                        <label htmlFor={`${input.label}`}>{input.label}:</label>
-                        <input
-                            type="text"
-                            id="[input.label]"
-                            className={`${errors.[input.label] as FieldError ? "campo-obrigatorio" : "campo-preenchido"}`}
-                            {
-                                ...register('[input.label]', {
-                                    required: 'Campo Obrigatório',
-        
-                                })
-                            }
-                        />
-                        { errors.[input.label] && <p>{ errors.[input.label].message as string }</p>}
-                        </>
+                        <div key={index}>
+                            <label htmlFor={`${input.label}`}>{firstLetterCapitalized(input.label)}:</label>
+                            <input
+                                // key={index}
+                                type="text"
+                                id={`${input.label}`}
+                                className={`${errors[input.label] ? "campo-obrigatorio" : "campo-preenchido"}`}
+                                {
+                                    ...register(input.label, {
+                                        required: 'Campo Obrigatório',
+                                    })
+                                }
+                            />
+                            { errors[input.label] && <p>{ errors[input.label]?.message as string }</p>}
+                        </div>
                     )
                 })}
             </div>
             <input type="submit"/>
         </form>
-        </>
     )
 }
 
