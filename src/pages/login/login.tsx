@@ -24,7 +24,6 @@ export const Login = () => {
                                 type: 'text',
                             },
                         ]} />
-                        {/* <AccessButton buttonName="Entrar" /> */}
                     </div>
                 </aside>
             </div>
