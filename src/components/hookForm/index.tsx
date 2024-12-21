@@ -2,6 +2,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useState } from "react"
 import './style.css'
 import { firstLetterCapitalized } from '../../shared/utils';
+import { AccessButton } from '../accessButton';
 
 const HookForm = ({ inputs }: {
     inputs: {
@@ -27,16 +28,16 @@ const HookForm = ({ inputs }: {
     // console.log(emailWatch); Fica assistindo cada alteração do input
     return (
         <form onSubmit={handleSubmit(handleSubmitForm)}>
-            <div>
+            <div className='container'>
                 {inputs.map((input, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} className='labelInputDiv'>
                             <label htmlFor={`${input.label}`}>{firstLetterCapitalized(input.label)}:</label>
                             <input
                                 // key={index}
                                 type="text"
                                 id={`${input.label}`}
-                                className={`${errors[input.label] ? "campo-obrigatorio" : "campo-preenchido"}`}
+                                className={`input ${errors[input.label] ? "campo-obrigatorio" : "campo-preenchido"}`}
                                 {
                                     ...register(input.label, {
                                         required: 'Campo Obrigatório',
@@ -48,7 +49,8 @@ const HookForm = ({ inputs }: {
                     )
                 })}
             </div>
-            <input type="submit"/>
+
+            <AccessButton buttonName="Entrar" />
         </form>
     )
 }

@@ -1,6 +1,6 @@
 import { AccessButton } from "../../components/accessButton"
 import HookForm from "../../components/hookForm";
-import ManualForm from "../../components/manualForm";
+// import ManualForm from "../../components/manualForm";
 import './login.css'
 
 export const Login = () => {
@@ -11,19 +11,20 @@ export const Login = () => {
             <div className="loginContainer">
                 <img className="image" src={imgUrl} alt="" />
                 <aside>
-                    {/* <ManualForm /> */}
-                    <HookForm inputs={[
-                        {
-                            label: 'email',
-                            type: 'text',
-                        },
-                        {
-                            label: 'password',
-                            type: 'text',
-                        },
-                    ]} />
-                    <AccessButton buttonName="Entrar" />
-
+                    <div className="container">
+                        <h2>Login</h2>
+                        {/* <ManualForm /> */}
+                        <HookForm inputs={[
+                            {
+                                label: 'email',
+                                type: 'text',
+                            },
+                            {
+                                label: 'password',
+                                type: 'text',
+                            },
+                        ]} />
+                    </div>
                 </aside>
             </div>
         </>
